@@ -9,6 +9,6 @@ object WeatherConditions extends Enumeration {
   type WeatherCondition = Value
 
   // only three weather conditions considered
-  val Snow, Rain, Sunny = Value
+  val SNOW, RAIN, SUNNY = Value
 
 }

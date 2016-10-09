@@ -6,7 +6,8 @@ package com.cheng.weathersimulation.models
 
 object City extends Enumeration {
   type City = Value
-  val CANBERRA, SYDNEY, MELBOURNE, BRISBANE, PERTH, HOBART, DARWIN = Value
+  val CANBERRA, SYDNEY, BRISBANE, PERTH, DARWIN, ORANGE, WUHAN, CHENGDU, BEIJING,
+      PARIS, BERLIN, WASHINGTON, NEW_YORK, NEW_DELI, SEOUL = Value
 
-  val numCities = 7
+  val numCities = 15
 }

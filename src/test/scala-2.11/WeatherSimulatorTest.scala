@@ -1,6 +1,7 @@
 import java.util.regex.Pattern
 
 import com.cheng.weathersimulation.simulators.WeatherSimulator
+import com.cheng.weathersimulation.utils.PrettyPrinter
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import org.specs2.mutable._
@@ -66,7 +67,7 @@ object WeatherSimulatorTest extends Specification {
         outputStr must contain('|')
         val outputs = outputStr.split(Pattern.quote("|"))
 
-        r.city.toString.toLowerCase.capitalize must beEqualTo(outputs(0))
+        PrettyPrinter.prettyCityName(r.city.toString) must beEqualTo(outputs(0))
 
         val latLongStr = Array(r.latitude, r.longitude) map {_.toString} mkString(",")
         val elevationStr = r.elevation.toString // avoid to print decimal .0

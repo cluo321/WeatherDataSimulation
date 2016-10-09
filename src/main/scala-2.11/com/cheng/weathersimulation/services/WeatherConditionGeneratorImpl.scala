@@ -25,15 +25,15 @@ object WeatherConditionGeneratorImpl extends WeatherConditionGenerator {
   def generate(temperature: Double, rh: RelativeHumidity, latitude: Latitude, longitude: Longitude) : WeatherCondition = {
 
     (temperature, rh) match {
-      case (t, r) if t <= 0 && rh >=1 => Snow // cold and saturation
-      case (t, r) if t > 0 && rh >=1 => Rain  // normal but saturation
-      case (_, r) if rh < 0.4 => Sunny // low humidity
+      case (t, r) if t <= 0 && rh >=1 => SNOW // cold and saturation
+      case (t, r) if t > 0 && rh >=1 => RAIN  // normal but saturation
+      case (_, r) if rh < 0.4 => SUNNY // low humidity
       case _ =>
         val feeling = getFeelingFromTemperature(temperature)
         val eventProbs = generateEventProbs(rh, latitude, longitude)(feeling)
 
         // always treat Snow as 0, Rain as 1, Sunny as 2
-        val values = Array(eventProbs(Snow), eventProbs(Rain), eventProbs(Sunny))
+        val values = Array(eventProbs(SNOW), eventProbs(RAIN), eventProbs(SUNNY))
 
         val sampler = Multinomial(DenseVector(values))
         val index = sampler.draw()
@@ -59,9 +59,9 @@ object WeatherConditionGeneratorImpl extends WeatherConditionGenerator {
     val sunnyInHot = sunnyBaseInHot - locEffect - rhEffectInHot
 
     Map(
-      Freeze -> Map((Snow -> snowInFreeze), (Rain -> baseFactor), (Sunny -> sunnyInFreeze)),
-      Normal -> Map((Snow -> baseFactor), (Rain -> rainInNormal), (Sunny -> sunnyInNormal)),
-      Hot    -> Map((Snow -> baseFactor), (Rain -> rainInHot), (Sunny -> sunnyInHot))
+      Freeze -> Map( SNOW -> snowInFreeze, RAIN -> baseFactor, SUNNY -> sunnyInFreeze ),
+      Normal -> Map( SNOW -> baseFactor, RAIN -> rainInNormal, SUNNY -> sunnyInNormal ),
+      Hot    -> Map( SNOW -> baseFactor, RAIN -> rainInHot, SUNNY -> sunnyInHot )
     )
   }
 

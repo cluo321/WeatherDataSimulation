@@ -3,6 +3,7 @@ package com.cheng.weathersimulation.models
 import com.cheng.weathersimulation.models.City.City
 import com.cheng.weathersimulation.models.WeatherConditions.WeatherCondition
 import com.cheng.weathersimulation.services.{Latitude, Longitude}
+import com.cheng.weathersimulation.utils.PrettyPrinter
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
@@ -20,7 +21,7 @@ case class WeatherData (city : City,
                         pressure : Float,
                         humidity : Float) {
   override def toString = {
-    val cityName = city.toString.toLowerCase.capitalize
+    val cityName = PrettyPrinter.prettyCityName(city.toString)
 
     val latLongStr = Array(latitude, longitude) map {_.toString} mkString(",")
     val elevationStr = elevation.toString // avoid to print decimal .0

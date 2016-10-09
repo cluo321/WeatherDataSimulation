@@ -13,7 +13,7 @@ import scala.util.Try
 
 object WeatherSimulation extends App {
   Try {
-    if (3 != args.size) {
+    if (3 != args.length) {
       println("Please enter the correct number of input args.")
       println("1st arg: the number of simulated weather data.")
       println("2nd arg: the start date of simulated weather data. YYYY/MM/DD ")
@@ -22,6 +22,10 @@ object WeatherSimulation extends App {
     }
 
     implicit val numOfSimulation = Integer.parseInt(args(0))
+
+    if(numOfSimulation <= 0){
+      throw new IllegalArgumentException(s"the num of simulation must be positive integer. (current: $numOfSimulation)")
+    }
 
     // arg1 should be start date and arg2 should be end date
     val arg1 = args(1)

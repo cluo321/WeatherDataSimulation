@@ -17,7 +17,7 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 10
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Rain) must have size(be_>=(trials/3))
+      results filter(_ == RAIN) must have size(be_>=(trials/3))
     }
 
     "generate Rain likely with normal temperature, high humidity and small latitude (small trial)" in {
@@ -29,7 +29,7 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 1000
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Rain) must have size(be_>=(trials/3))
+      results filter(_ == RAIN) must have size(be_>=(trials/3))
     }
 
     "generate Sunny mostly with high temperature, normal-high humidity and normal latitude (tiny trial)" in {
@@ -41,7 +41,7 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 10
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Sunny) must have size(be_>=(trials/2))
+      results filter(_ == SUNNY) must have size(be_>=(trials/2))
     }
 
     "generate Sunny mostly with high temperature, high humidity and normal latitude (small trial)" in {
@@ -53,7 +53,7 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 1000
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Sunny) must have size(be_>=(trials/2))
+      results filter(_ == SUNNY) must have size(be_>=(trials/2))
     }
 
     "generate Snow and Sunny with temperature below 0, high humidity and normal latitude (tiny trial)" in {
@@ -65,9 +65,9 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 10
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Snow) must have size(be_>(0))
-      results filter(_ == Rain) must have size(be_==(0))
-      results filter(_ == Sunny) must have size(be_>(0))
+      results filter(_ == SNOW) must have size(be_>(0))
+      results filter(_ == RAIN) must have size(be_==(0))
+      results filter(_ == SUNNY) must have size(be_>(0))
     }
 
     "do not generate Rain with temperature below 0 (small trial)" in {
@@ -79,7 +79,7 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 1000
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Rain) must have size(be_==(0))
+      results filter(_ == RAIN) must have size(be_==(0))
     }
 
     "generate Rain and Sunny with temperature above 0, high humidity and normal latitude (tiny trial)" in {
@@ -91,9 +91,9 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 10
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Snow) must have size(be_==(0))
-      results filter(_ == Rain) must have size(be_>(0))
-      results filter(_ == Sunny) must have size(be_>(0))
+      results filter(_ == SNOW) must have size(be_==(0))
+      results filter(_ == RAIN) must have size(be_>(0))
+      results filter(_ == SUNNY) must have size(be_>(0))
     }
 
     "do not generate Snow with temperature above 0 (small trial)" in {
@@ -105,7 +105,7 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 1000
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Snow) must have size(be_==(0))
+      results filter(_ == SNOW) must have size(be_==(0))
     }
 
     "do not generate Rain with low humidity (small trial)" in {
@@ -117,7 +117,7 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 1000
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Rain) must have size(be_==(0))
+      results filter(_ == RAIN) must have size(be_==(0))
     }
 
     "do not generate Snow with low humidity (small trial)" in {
@@ -129,7 +129,7 @@ object WeatherConditionGeneratorTest extends Specification {
       val trials = 1000
       val results = (0 until trials) map { _ => WeatherConditionGeneratorImpl.generate(temperature, rh, latitude, longitude) }
 
-      results filter(_ == Snow) must have size(be_==(0))
+      results filter(_ == SNOW) must have size(be_==(0))
     }
 
   }
