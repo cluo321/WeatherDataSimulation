@@ -43,8 +43,8 @@ case class WeatherData (city : City,
   }
 
   private def formatValue(value: Float) : String = {
-    val absValue = scala.math.abs(value)
-    f"$absValue%.1f"
+    //val absValue = scala.math.abs(value)
+    f"$value%.1f"
   }
 
   private val dateTimePattern = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
