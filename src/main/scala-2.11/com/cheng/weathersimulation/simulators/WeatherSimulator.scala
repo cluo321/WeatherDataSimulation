@@ -44,7 +44,7 @@ object WeatherSimulator {
   /**
     *
     * @param file the filename of bitmap, which should be placed in resources folder
-    * @return
+    * @return a WeatherSimulator with elevation map which is located in resources folder and named as elevation.bmp
     */
   def apply(file: String) : WeatherSimulator = {
     val elevationMapService = ElevationMapServiceImpl(file)

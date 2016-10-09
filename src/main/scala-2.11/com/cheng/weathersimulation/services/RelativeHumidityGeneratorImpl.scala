@@ -12,7 +12,7 @@ object RelativeHumidityGeneratorImpl extends RelativeHumidityGenerator {
     * Compute relative humidity as E/Es, where E is vapor pressure and Es is saturation vapor pressure.
     * The computation is based on the Clausius-Clapeyron equation.
     *
-    * @param temperature
+    * @param temperature unit in celsius
     * @return relative humidity in double (0 <= RH <= 1)
     */
   def generate(temperature: Double, latitude: Latitude, longitude: Longitude) : RelativeHumidity = {
@@ -47,9 +47,9 @@ object RelativeHumidityGeneratorImpl extends RelativeHumidityGenerator {
     * Assume that the larger the latitude is, the larger the standard deviation is. In other words, for areas with large
     * latitude, it is assumed that the dew point is large
  *
-    * @param temperature
-    * @param latitude
-    * @param longitude
+    * @param temperature unit in Celsius.
+    * @param latitude can be found from CityInfo
+    * @param longitude can be found from CityInfo
     * @return
     */
   private def generateDewPointTemperature(temperature: Double, latitude: Latitude, longitude: Longitude) : Double = {

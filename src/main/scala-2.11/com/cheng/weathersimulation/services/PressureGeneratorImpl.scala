@@ -12,8 +12,8 @@ object PressureGeneratorImpl extends PressureGenerator {
     * Assume that the standard temperature lapse rate is non zero in the formula.
     * Assume that the range of (above sea level) is always below 11km.
     *
-    * @param temperature in Celsius
-    * @param elevation
+    * @param temperature unit in Celsius
+    * @param elevation can be found by using ElevationMapService
     * @return
     */
   def generate(temperature: Double, elevation: Elevation) : Pressure = {

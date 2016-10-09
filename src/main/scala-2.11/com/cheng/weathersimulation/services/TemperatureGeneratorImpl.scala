@@ -90,14 +90,14 @@ object TemperatureGeneratorImpl extends TemperatureGenerator {
     */
   private def elevationEffect(elevation: Elevation) : Double = {
     // elevation could be zero...
-    elevationDeviation*(scala.math.exp(-elevation))
+    elevationDeviation * math.exp(-elevation)
   }
 
   /**
     * Convert from input minute of a day (range: 0 to 24*60) to [-6, 6] with respect to
     * max value when input minute is 15*60+30 and min value when input is 6*60
     *
-    * @param minute
+    * @param minute range from 0 to 60
     * @return float values between -6 and 6. This returned value is used as input for CDF with degree of freedom 6.
     */
   private def timeCoordinateTransform(minute: Int) : Float = {

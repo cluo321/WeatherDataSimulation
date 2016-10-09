@@ -16,11 +16,11 @@ object WeatherConditionGeneratorImpl extends WeatherConditionGenerator {
     * Different multi-nominal distributions of weather conditions are selected based on the range in which the input
     * temperature falls.
     *
-    * @param temperature
-    * @param rh
-    * @param latitude
-    * @param longitude
-    * @return
+    * @param temperature unit in Celsius.
+    * @param rh Relative Humidity.
+    * @param latitude can be found from CityInfo.
+    * @param longitude can be found from CityInfo.
+    * @return a wempiricallytion from an empiricially linear model with day of month as the input variable.
     */
   def generate(temperature: Double, rh: RelativeHumidity, latitude: Latitude, longitude: Longitude) : WeatherCondition = {
 
@@ -95,7 +95,7 @@ object WeatherConditionGeneratorImpl extends WeatherConditionGenerator {
   /**
     * Empirically divide the range of temperatures into personal feelings
     *
-    * @param temperature
+    * @param temperature unit in Celsius.
     * @return personal feeling to select event probabilities for generating weather conditions
     */
   private def getFeelingFromTemperature(temperature: Double) : Feelings = {
