@@ -74,7 +74,7 @@ object WeatherSimulatorTest extends Specification {
         val positionStr = Array(latLongStr, elevationStr) mkString(",")
         positionStr must beEqualTo(outputs(1))
 
-        val dateTimeStr =  DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ").print(r.dateTime)
+        val dateTimeStr =  DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").print(r.dateTime)
         dateTimeStr must beEqualTo(outputs(2))
 
         r.condition.toString.toLowerCase.capitalize must beEqualTo(outputs(3))

@@ -47,5 +47,5 @@ case class WeatherData (city : City,
     f"$absValue%.1f"
   }
 
-  private val dateTimePattern = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ")
+  private val dateTimePattern = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
 }
