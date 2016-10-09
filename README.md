@@ -1,7 +1,9 @@
 # WeatherDataSimulation
 
 ###### // All the following operations should be conducted at the directory where build.sbt locates.
-###### // For this program, the location should be under WeatherDataSimulation directory.  
+###### // For this program, the location should be under WeatherDataSimulation directory.
+###### // The simulated date will be printed to console and saved to a file named 'output.txt' 
+###### // in the current working directory.
 
 # compile
 
