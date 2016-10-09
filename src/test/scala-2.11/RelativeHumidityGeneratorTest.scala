@@ -24,10 +24,10 @@ object RelativeHumidityGeneratorTest extends Specification {
       val longitude = 56.7
 
       val trails = 10
-      val rhs = 0 until trails map { _ =>RelativeHumidityGeneratorImpl.generate(temperature, latitude, longitude) }
+      val rhs = 0 until trails map { _ => RelativeHumidityGeneratorImpl.generate(temperature, latitude, longitude) }
 
       rhs must haveSize(trails)
-      rhs must contain { (x : Double) => x must beEqualTo(1.0) }
+      rhs must contain(be_==(1.0)).atLeastOnce  //contain { (x : Double) => x must beEqualTo(1.0) }
     }
 
     "always have unsaturation cases" in {
@@ -36,10 +36,10 @@ object RelativeHumidityGeneratorTest extends Specification {
       val longitude = 56.7
 
       val trails = 10
-      val rhs = 0 until trails map { _ =>RelativeHumidityGeneratorImpl.generate(temperature, latitude, longitude) }
+      val rhs = 0 until trails map { _ => RelativeHumidityGeneratorImpl.generate(temperature, latitude, longitude) }
 
       rhs must haveSize(trails)
-      rhs must contain { (x : Double) => x must beBetween(0.0, 0.99) }
+      rhs must contain(between(0.0, 0.99)).atLeastOnce //{ (x : Double) => x must beBetween(0.0, 0.99) }
     }
 
     "always have low RH values when the latitude is high and temperature is low" in {
@@ -47,11 +47,11 @@ object RelativeHumidityGeneratorTest extends Specification {
       val latitude = 52.3
       val longitude = 56.7
 
-      val trails = 10
-      val rhs = 0 until trails map { _ =>RelativeHumidityGeneratorImpl.generate(temperature, latitude, longitude) }
+      val trails = 100
+      val rhs = 0 until trails map { _ => RelativeHumidityGeneratorImpl.generate(temperature, latitude, longitude) }
 
       rhs must haveSize(trails)
-      rhs must contain { (x : Double) => x must beLessThan(0.5) }
+      rhs must contain(be_<(0.5)).atLeastOnce // { (x : Double) => x must beLessThan(0.5) }
     }
   }
 
